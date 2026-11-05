@@ -1,0 +1,17 @@
+{
+  "usuarioPadrao": {
+    "email": "carininha@test.com",
+    "nome": "Carine Test",
+    "senha": "senha123"
+  },
+  "usuarioComSaldo": {
+    "email": "com_saldo@teste.com",
+    "nome": "Carine Com Saldo",
+    "senha": "senha123"
+  },
+  "usuarioInvalido": {
+    "email": "invalido@test.com",
+    "senha": "senha_errada"
+  }
+}
+

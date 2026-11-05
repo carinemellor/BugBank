@@ -1,0 +1,52 @@
+name: Cypress E2E Tests - BugBank
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  cypress-run:
+    name: Cypress Test Suite Execution
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do Repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Instalar Dependências
+        run: npm ci
+
+      - name: Executar Testes Automatizados Cypress
+        run: npx cypress run --browser chrome --headless
+
+      - name: Mesclar e Gerar Relatório HTML Mochawesome
+        if: always()
+        run: |
+          npm run report:merge || true
+          npm run report:generate || true
+
+      - name: Upload de Relatórios HTML (Artifacts)
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: mochawesome-report
+          path: cypress/reports/
+          retention-days: 14
+
+      - name: Upload de Screenshots de Falhas
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots/
+          retention-days: 7
+

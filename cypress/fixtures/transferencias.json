@@ -1,0 +1,15 @@
+{
+  "transferenciaValida": {
+    "valor": 350,
+    "descricao": "Transferência de teste Cypress"
+  },
+  "transferenciaSemSaldo": {
+    "valor": 5000,
+    "descricao": "Tentativa sem saldo"
+  },
+  "transferenciaValorZero": {
+    "valor": 0,
+    "descricao": "Valor zero"
+  }
+}
+

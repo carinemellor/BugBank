@@ -1,0 +1,17 @@
+# Dependências
+node_modules/
+
+# Repositório clonado da aplicação para inspeção
+bugbank-ui/
+
+# Relatórios e Evidências gerados em execução
+cypress/reports/
+cypress/screenshots/
+cypress/videos/
+
+# Arquivos do sistema operacional e logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+Thumbs.db
