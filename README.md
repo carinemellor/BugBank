@@ -112,3 +112,4 @@ Após executar `npm run cy:report`, abra o arquivo `cypress/reports/index.html` 
 ## 👩‍💻 Autora
 Desenvolvido por **Carine**  
 [petitocarine@gmail.com](mailto:petitocarine@gmail.com)
+
