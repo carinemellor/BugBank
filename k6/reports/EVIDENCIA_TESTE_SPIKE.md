@@ -57,3 +57,4 @@ Avaliar o comportamento da aplicação BugBank frente a uma **explosão súbita 
 Durante os ensaios de pico agressivo, foram constatados dois comportamentos fundamentais de arquitetura:
 1. **Proteção de Borda (CDN Netlify):** O host Netlify possui proteções ativas contra *SYN Flood* e limites de abertura concorrente de novos sockets TLS por IP único em curtíssimo intervalo (< 5s).
 2. **Resiliência e Absorção:** Quando o pico de acessos é introduzido dentro dos parâmetros elásticos, a aplicação absorve 100% do tráfego com latência média de apenas **39.6ms**, sem qualquer timeout ou corrupção de sessão.
+
