@@ -28,6 +28,9 @@ jobs:
       - name: Executar Teste de Carga Real (Ramp-up até 20 VUs - 40s)
         run: k6 run k6/teste-carga.js
 
+      - name: Executar Teste de Estresse (Ramp-up até 80 VUs - 50s)
+        run: k6 run k6/stress-test.js
+
       - name: Upload dos Relatórios Visuais HTML (Artifacts)
         uses: actions/upload-artifact@v4
         if: always()

@@ -156,6 +156,7 @@ Este documento serve como o **guia oficial de execução de testes manuais** e e
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **CT-PERF-01** | Smoke Test (Verificação Inicial de Saúde) | k6 instalado | 1. Executar `npm run k6:smoke`<br>2. Simular 1 VU durante 10s | 1 VU / 10s | Status code 200 em 100%, taxa de falhas 0% e tempo médio < 500ms. Evidência gerada em `k6/reports/smoke-test-relatorio.html`. | ✅ Aprovado | Performance / Smoke |
 | **CT-PERF-02** | Teste de Carga com Ramp-up (Simulação Realista) | k6 instalado | 1. Executar `npm run k6:run`<br>2. Subir gradualmente até 20 VUs por 40s | 20 VUs / 40s | 95% das requisições respondendo em menos de 1.5s e taxa de falhas inferior a 1%. Evidência gerada em `k6/reports/teste-carga-relatorio.html`. | ✅ Aprovado | Performance / Carga |
+| **CT-PERF-03** | Teste de Estresse Extremo (Pico de 80 VUs) | k6 instalado | 1. Executar `npm run k6:stress`<br>2. Subir progressivamente até 80 VUs simultâneos em múltiplos endpoints | 80 VUs / 50s | 95% das requisições abaixo de 2.5s e taxa de erros < 5%. Evidência gerada em `k6/reports/stress-test-relatorio.html`. | ✅ Aprovado | Performance / Estresse |
 
 ---
 
@@ -188,6 +189,7 @@ Este documento serve como o **guia oficial de execução de testes manuais** e e
 | **CT-MOB-01** | Responsividade Mobile | Usabilidade / Mobile | Bloco 7 |
 | **CT-PERF-01** | Smoke Test de Performance (1 VU) | Performance | k6: `smoke-test.js` |
 | **CT-PERF-02** | Teste de Carga Real com Ramp-up (20 VUs) | Performance | k6: `teste-carga.js` |
+| **CT-PERF-03** | Teste de Estresse Extremo (80 VUs) | Performance | k6: `stress-test.js` |
 
 ---
 

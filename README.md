@@ -77,7 +77,7 @@ Toda a especificação de testes está disponível na pasta [`cenarios-de-teste/
 5. **Extrato Bancário e Auditoria:** Conferência do débito na conta devedora e auditoria de crédito na conta favorecida.
 6. **Segurança (Route Guarding):** Bloqueio de acesso não autenticado a rotas protegidas (`/home`, `/transfer`, `/bank-statement`).
 7. **Responsividade Mobile:** Testes em viewport de smartphone (`iphone-xr`).
-8. **Performance e Carga (k6):** Smoke testing e teste de carga com ramp-up de até 20 usuários simultâneos (latência média de 42ms, 0% de falhas).
+8. **Performance, Carga e Estresse (k6):** Smoke testing, teste de carga com ramp-up (20 VUs) e teste de estresse extremo com pico de 80 usuários simultâneos (2.606 requisições, latência média de 38ms, 0% de falhas).
 
 ---
 
@@ -115,7 +115,7 @@ npm run cy:run:chrome
 npm run cy:report
 ```
 
-### Execução dos Testes de Performance (k6)
+### Execução dos Testes de Performance e Carga (k6)
 
 ```bash
 # Smoke Test (1 usuário por 10s)
@@ -123,6 +123,9 @@ npm run k6:smoke
 
 # Teste de Carga Real com Ramp-up (até 20 usuários por 40s)
 npm run k6:run
+
+# Teste de Estresse Extremo (pico de até 80 usuários por 50s)
+npm run k6:stress
 ```
 
 ---
@@ -130,7 +133,8 @@ npm run k6:run
 ## 📊 Relatórios Visuais em HTML
 
 * **E2E (Mochawesome):** `cypress/reports/index.html`
-* **Performance (k6):** `k6/reports/teste-carga-relatorio.html`
+* **Performance e Carga (k6):** `k6/reports/teste-carga-relatorio.html`
+* **Estresse Extremo (k6):** `k6/reports/stress-test-relatorio.html`
 
 ---
 
