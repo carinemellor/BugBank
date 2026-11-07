@@ -1,0 +1,37 @@
+name: k6 Performance Tests - BugBank
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  k6-performance:
+    name: k6 Performance & Load Test Suite
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do Repositório
+        uses: actions/checkout@v4
+
+      - name: Instalar Grafana k6
+        uses: grafana/setup-k6-action@v1
+
+      - name: Criar diretório de relatórios
+        run: mkdir -p k6/reports
+
+      - name: Executar Smoke Test (1 VU - 10s)
+        run: k6 run k6/smoke-test.js
+
+      - name: Executar Teste de Carga Real (Ramp-up até 20 VUs - 40s)
+        run: k6 run k6/teste-carga.js
+
+      - name: Upload dos Relatórios Visuais HTML (Artifacts)
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: k6-performance-reports
+          path: k6/reports/
+          retention-days: 14

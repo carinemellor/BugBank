@@ -1,22 +1,24 @@
-# 🏦 BugBank - Automação de Testes E2E com Cypress
+# 🏦 BugBank - Automação de Testes E2E (Cypress) e Performance (k6)
 
 [![Cypress](https://img.shields.io/badge/Cypress-16.2.1-04C38C?style=for-the-badge&logo=cypress&logoColor=white)](https://www.cypress.io/)
+[![k6](https://img.shields.io/badge/k6-Performance-7D47B7?style=for-the-badge&logo=k6&logoColor=white)](https://k6.io/)
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/)
 [![GitHub Actions](https://img.shields.io/badge/CI%2FCD-GitHub_Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)](https://github.com/features/actions)
 [![Mochawesome](https://img.shields.io/badge/Reports-Mochawesome-FF6B6B?style=for-the-badge)](https://www.npmjs.com/package/mochawesome)
 
-Projeto profissional de **Garantia da Qualidade (QA)** e **Automação de Testes End-to-End (E2E)** desenvolvido sobre a aplicação bancária digital [BugBank](https://bugbank.netlify.app/).
+Projeto profissional de **Garantia da Qualidade (QA)**, **Automação de Testes End-to-End (E2E)** e **Testes de Performance e Carga** desenvolvido sobre a aplicação bancária digital [BugBank](https://bugbank.netlify.app/).
 
-A suíte foi construída seguindo as melhores práticas da engenharia de testes de software, incluindo **Page Object Model (POM)**, **Custom Commands**, **Massa de Dados Dinâmica (Faker.js)**, **Pipeline de CI/CD** e **Documentação Completa de Cenários (Manuais e BDD/Gherkin)**.
+A suíte foi construída seguindo as melhores práticas da engenharia de testes de software, incluindo **Page Object Model (POM)**, **Custom Commands**, **Massa de Dados Dinâmica (Faker.js)**, **Pipeline de CI/CD Multi-Job**, **Testes de Carga com k6** e **Documentação Completa de Cenários (Manuais e BDD/Gherkin)**.
 
 ---
 
 ## 📑 Documentação de QA e Cenários de Teste
 
 Toda a especificação de testes está disponível na pasta [`cenarios-de-teste/`](./cenarios-de-teste/):
-* 📋 **[Plano e Especificação de Casos de Teste (CT-01 a CT-35)](./cenarios-de-teste/PLANO_DE_TESTES.md):** Contém passos detalhados, dados de entrada, resultados esperados, matriz de rastreabilidade e relatório de bugs catalogados.
+* 📋 **[Plano e Especificação de Casos de Teste (CT-01 a CT-37)](./cenarios-de-teste/PLANO_DE_TESTES.md):** Contém passos detalhados, dados de entrada, resultados esperados, matriz de rastreabilidade e relatório de bugs catalogados.
 * 🥒 **[Cenários em BDD / Gherkin (`.feature`)](./cenarios-de-teste/cenarios.feature):** Especificação no padrão `Dado / Quando / Então`.
 * 🐛 **[Template de Defeitos (Bug Report)](./.github/ISSUE_TEMPLATE/bug_report.md):** Modelo padronizado para abertura de issues de defeitos.
+* ⚡ **[Evidência do Teste de Carga (k6)](./k6/reports/EVIDENCIA_TESTE_CARGA.md):** Relatório de métricas de performance com 20 VUs simultâneos.
 
 ---
 
@@ -27,9 +29,10 @@ Toda a especificação de testes está disponível na pasta [`cenarios-de-teste/
 │   ├── ISSUE_TEMPLATE/
 │   │   └── bug_report.md             # Modelo de relatório de bugs
 │   └── workflows/
-│       └── cypress.yml               # Pipeline de CI/CD automática via GitHub Actions
+│       ├── cypress.yml               # CI/CD: Testes E2E com Cypress
+│       └── k6-performance.yml        # CI/CD: Testes de Carga e Performance com k6
 ├── cenarios-de-teste/
-│   ├── PLANO_DE_TESTES.md            # Plano de testes e casos de teste manuais e automatizados
+│   ├── PLANO_DE_TESTES.md            # Plano de testes manuais, automatizados e de performance
 │   ├── cenarios.feature              # Cenários de teste no formato BDD (Gherkin)
 │   └── README.md                     # Índice de documentação de testes
 ├── cypress/
@@ -49,6 +52,15 @@ Toda a especificação de testes está disponível na pasta [`cenarios-de-teste/
 │           ├── HomePage.js
 │           ├── TransferPage.js
 │           └── StatementPage.js
+├── k6/
+│   ├── reports/
+│   │   ├── EVIDENCIA_SMOKE_TEST.md   # Evidência do Smoke Test
+│   │   ├── EVIDENCIA_TESTE_CARGA.md  # Evidência do Teste de Carga
+│   │   ├── smoke-test-relatorio.html # Dashboard HTML do Smoke Test
+│   │   └── teste-carga-relatorio.html# Dashboard HTML do Teste de Carga
+│   ├── smoke-test.js                 # Script k6: Smoke Test (1 VU)
+│   ├── teste-carga.js                # Script k6: Teste de Carga com Ramp-up (20 VUs)
+│   └── README.md                     # Documentação de performance
 ├── cypress.config.js                 # Configurações globais e do reporter
 ├── package.json                      # Dependências e scripts de execução
 └── .gitignore
@@ -65,6 +77,7 @@ Toda a especificação de testes está disponível na pasta [`cenarios-de-teste/
 5. **Extrato Bancário e Auditoria:** Conferência do débito na conta devedora e auditoria de crédito na conta favorecida.
 6. **Segurança (Route Guarding):** Bloqueio de acesso não autenticado a rotas protegidas (`/home`, `/transfer`, `/bank-statement`).
 7. **Responsividade Mobile:** Testes em viewport de smartphone (`iphone-xr`).
+8. **Performance e Carga (k6):** Smoke testing e teste de carga com ramp-up de até 20 usuários simultâneos (latência média de 42ms, 0% de falhas).
 
 ---
 
@@ -77,16 +90,16 @@ Toda a especificação de testes está disponível na pasta [`cenarios-de-teste/
 ### Instalação
 ```bash
 # Clone este repositório
-git clone <URL_DO_SEU_REPOSITORIO>
+git clone https://github.com/carinemellor/BugBank.git
 
 # Acesse a pasta do projeto
-cd "Bugbank - cypress"
+cd "BugBank"
 
 # Instale as dependências
 npm install
 ```
 
-### Execução dos Testes
+### Execução dos Testes E2E (Cypress)
 
 ```bash
 # Modo Interativo (Interface visual do Cypress)
@@ -102,14 +115,32 @@ npm run cy:run:chrome
 npm run cy:report
 ```
 
+### Execução dos Testes de Performance (k6)
+
+```bash
+# Smoke Test (1 usuário por 10s)
+npm run k6:smoke
+
+# Teste de Carga Real com Ramp-up (até 20 usuários por 40s)
+npm run k6:run
+```
+
 ---
 
-## 📊 Relatório Visual HTML (Mochawesome)
-Após executar `npm run cy:report`, abra o arquivo `cypress/reports/index.html` em qualquer navegador para visualizar o dashboard completo com métricas de aprovação, tempo de execução e screenshots de eventuais falhas.
+## 📊 Relatórios Visuais em HTML
+
+* **E2E (Mochawesome):** `cypress/reports/index.html`
+* **Performance (k6):** `k6/reports/teste-carga-relatorio.html`
+
+---
+
+## 🔄 Integração Contínua (CI/CD)
+O repositório conta com dois workflows automatizados no **GitHub Actions**:
+1. **`cypress.yml`:** Executa a suíte E2E completa no Chrome Headless e gera os relatórios Mochawesome.
+2. **`k6-performance.yml`:** Executa os testes de carga e gera os dashboards de performance na nuvem.
 
 ---
 
 ## 👩‍💻 Autora
 Desenvolvido por **Carine**  
 [petitocarine@gmail.com](mailto:petitocarine@gmail.com)
-
