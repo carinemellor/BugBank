@@ -13,6 +13,8 @@
     "report:merge": "npx mochawesome-merge cypress/reports/mochawesome/*.json -o cypress/reports/report.json",
     "report:generate": "npx marge cypress/reports/report.json -f index -o cypress/reports",
     "cy:report": "npm run clean:reports && cypress run && npm run report:merge && npm run report:generate",
+    "k6:run": "k6 run k6/teste-carga.js",
+    "k6:smoke": "k6 run --vus 1 --duration 10s k6/teste-carga.js",
     "test": "npm run cy:run"
   },
   "keywords": [
