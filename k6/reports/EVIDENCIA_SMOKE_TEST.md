@@ -45,3 +45,4 @@ Validar se a aplicação BugBank está ativa, saudável e respondendo com estabi
 
 ## 💡 Conclusão do Engenheiro de QA
 A aplicação web BugBank demonstrou excelente comportamento na camada de entrega estática, respondendo a requisições subsequentes em menos de 40ms e sem nenhuma ocorrência de indisponibilidade ou falha 5xx. A aplicação foi considerada **aprovada** e liberada para os testes de carga com múltiplos usuários concorrentes.
+
