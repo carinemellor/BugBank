@@ -61,3 +61,4 @@ O BugBank demonstrou altíssima robustez e capacidade de escalabilidade na CDN/e
 - **Não apresentou nenhuma queda de conexão ou erro HTTP 5xx/4xx** (0 falhas).
 - Manteve o percentil 95 de tempo de resposta em **41.96ms**, um resultado de altíssima qualidade para aplicações financeiras.
 - Recuperou-se instantaneamente após o ramp-down.
+

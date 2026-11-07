@@ -77,7 +77,7 @@ Toda a especificação de testes está disponível na pasta [`cenarios-de-teste/
 5. **Extrato Bancário e Auditoria:** Conferência do débito na conta devedora e auditoria de crédito na conta favorecida.
 6. **Segurança (Route Guarding):** Bloqueio de acesso não autenticado a rotas protegidas (`/home`, `/transfer`, `/bank-statement`).
 7. **Responsividade Mobile:** Testes em viewport de smartphone (`iphone-xr`).
-8. **Performance, Carga e Estresse (k6):** Smoke testing, teste de carga com ramp-up (20 VUs) e teste de estresse extremo com pico de 80 usuários simultâneos (2.606 requisições, latência média de 38ms, 0% de falhas).
+8. **Performance, Carga, Estresse e Pico (k6):** Tríade completa de engenharia de performance composta por Smoke testing, Teste de carga com ramp-up (20 VUs), Teste de estresse extremo (80 VUs - 2.606 requisições) e Teste de pico / Spike test (salto súbito de 12 VUs). Latência média geral em torno de 39ms com 0% de falhas.
 
 ---
 
@@ -126,6 +126,9 @@ npm run k6:run
 
 # Teste de Estresse Extremo (pico de até 80 usuários por 50s)
 npm run k6:stress
+
+# Teste de Pico / Spike Test (salto repentino de tráfego por 30s)
+npm run k6:spike
 ```
 
 ---
@@ -135,6 +138,7 @@ npm run k6:stress
 * **E2E (Mochawesome):** `cypress/reports/index.html`
 * **Performance e Carga (k6):** `k6/reports/teste-carga-relatorio.html`
 * **Estresse Extremo (k6):** `k6/reports/stress-test-relatorio.html`
+* **Pico / Spike Test (k6):** `k6/reports/spike-test-relatorio.html`
 
 ---
 

@@ -16,6 +16,7 @@
     "k6:run": "k6 run k6/teste-carga.js",
     "k6:smoke": "k6 run k6/smoke-test.js",
     "k6:stress": "k6 run k6/stress-test.js",
+    "k6:spike": "k6 run k6/spike-test.js",
     "test": "npm run cy:run"
   },
   "keywords": [
