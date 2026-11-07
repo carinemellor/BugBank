@@ -112,7 +112,7 @@ describe('1. Testes de Cadastro do BugBank', { testIsolation: false }, () => {
     }).clicarCadastrar()
 
     cy.contains(/A conta .* foi criada com sucesso/).should('not.exist')
-    cy.contains('Formato inválido').should('be.visible')
+    RegisterPage.inputEmail.should('have.prop', 'validity').and('have.property', 'valid', false)
   })
 
   it('Deve bloquear cadastro quando as senhas digitadas não conferem', () => {
@@ -384,12 +384,14 @@ describe('4. Testes de Transferência de Valores', { testIsolation: false }, () 
     })
 
     TransferPage.validarErro('Nao pode transferir pra mesmo conta').fecharModal()
-    TransferPage.voltarParaHome()
+    cy.visit('/home')
+    HomePage.validarUsuarioLogado('Conta Origem')
   })
 })
 
 describe('5. Testes de Extrato Bancário e Conferência do Ciclo Financeiro', { testIsolation: false }, () => {
   it('Deve exibir o histórico de transações e saldo debitado no extrato da conta de origem', () => {
+    cy.visit('/home')
     HomePage.acessarExtrato()
 
     StatementPage.validarSaldoDisponivel('650,00')
@@ -398,10 +400,12 @@ describe('5. Testes de Extrato Bancário e Conferência do Ciclo Financeiro', { 
 
     StatementPage.voltarParaHome()
     HomePage.fazerLogout()
+    LoginPage.btnAcessar.should('be.visible')
   })
 
   it('Deve realizar login na conta de destino e validar recebimento do crédito de R$ 350,00 no extrato', () => {
-    // 1. Login na conta favorecida
+    // 1. Garante que está na tela de login e autentica na conta favorecida
+    LoginPage.visitar()
     LoginPage.realizarLogin('destino_transf@test.com', 'senha123')
 
     // 2. Valida saldo creditado

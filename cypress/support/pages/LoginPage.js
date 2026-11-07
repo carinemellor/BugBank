@@ -1,22 +1,22 @@
 class LoginPage {
   get inputEmail() {
-    return cy.get('input[name="email"]').first()
+    return cy.get('.card__login input[name="email"]')
   }
 
   get inputPassword() {
-    return cy.get('input[name="password"]').first()
+    return cy.get('.card__login input[name="password"]')
   }
 
   get btnAcessar() {
-    return cy.contains('button', 'Acessar')
+    return cy.get('.card__login button').contains('Acessar')
   }
 
   get btnRegistrar() {
-    return cy.contains('button', 'Registrar')
+    return cy.get('.card__login button').contains('Registrar')
   }
 
   get eyeIcon() {
-    return cy.get('.login__eye').first()
+    return cy.get('.card__login .login__eye')
   }
 
   get modalText() {
@@ -33,12 +33,12 @@ class LoginPage {
   }
 
   preencherEmail(email) {
-    if (email) this.inputEmail.type(email)
+    if (email) this.inputEmail.clear({ force: true }).type(email)
     return this
   }
 
   preencherSenha(senha) {
-    if (senha) this.inputPassword.type(senha)
+    if (senha) this.inputPassword.clear({ force: true }).type(senha)
     return this
   }
 

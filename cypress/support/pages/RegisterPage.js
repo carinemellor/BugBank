@@ -1,18 +1,18 @@
 class RegisterPage {
   get inputEmail() {
-    return cy.get('input[name="email"]').last()
+    return cy.get('.card__register input[name="email"]')
   }
 
   get inputName() {
-    return cy.get('input[name="name"]')
+    return cy.get('.card__register input[name="name"]')
   }
 
   get inputPassword() {
-    return cy.get('input[name="password"]').last()
+    return cy.get('.card__register input[name="password"]')
   }
 
   get inputPasswordConfirmation() {
-    return cy.get('input[name="passwordConfirmation"]')
+    return cy.get('.card__register input[name="passwordConfirmation"]')
   }
 
   get toggleAddBalance() {
@@ -20,7 +20,7 @@ class RegisterPage {
   }
 
   get btnCadastrar() {
-    return cy.contains('button', 'Cadastrar')
+    return cy.get('.card__register button').contains('Cadastrar')
   }
 
   get btnVoltarAoLogin() {
@@ -28,11 +28,11 @@ class RegisterPage {
   }
 
   get eyePassword() {
-    return cy.get('.login__eye').eq(1)
+    return cy.get('.card__register .login__eye').eq(0)
   }
 
   get eyePasswordConfirmation() {
-    return cy.get('.login__eye').eq(2)
+    return cy.get('.card__register .login__eye').eq(1)
   }
 
   get modalText() {
@@ -44,10 +44,10 @@ class RegisterPage {
   }
 
   preencherCadastro({ email, name, password, passwordConfirmation, comSaldo = false }) {
-    if (email) this.inputEmail.type(email)
-    if (name) this.inputName.type(name)
-    if (password) this.inputPassword.type(password)
-    if (passwordConfirmation) this.inputPasswordConfirmation.type(passwordConfirmation)
+    if (email) this.inputEmail.clear({ force: true }).type(email)
+    if (name) this.inputName.clear({ force: true }).type(name)
+    if (password) this.inputPassword.clear({ force: true }).type(password)
+    if (passwordConfirmation) this.inputPasswordConfirmation.clear({ force: true }).type(passwordConfirmation)
     if (comSaldo) this.toggleAddBalance.click({ force: true })
     return this
   }

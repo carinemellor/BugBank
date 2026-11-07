@@ -12,19 +12,19 @@ class HomePage {
   }
 
   get btnTransferencia() {
-    return cy.contains('TRANSFERÊNCIA')
+    return cy.get('#btn-TRANSFERÊNCIA')
   }
 
   get btnExtrato() {
-    return cy.contains('EXTRATO')
+    return cy.get('#btn-EXTRATO')
   }
 
   get btnPagamentos() {
-    return cy.contains('PAGAMENTOS')
+    return cy.get('#btn-PAGAMENTOS')
   }
 
   get btnSaque() {
-    return cy.contains('SAQUE')
+    return cy.get('#btn-SAQUE')
   }
 
   get btnExit() {
