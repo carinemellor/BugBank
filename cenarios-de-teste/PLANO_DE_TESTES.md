@@ -150,6 +150,15 @@ Este documento serve como o **guia oficial de execução de testes manuais** e e
 
 ---
 
+### Módulo 8: Testes de Performance e Carga (k6)
+
+| ID | Cenário / Título | Pré-condições | Ações / Passos | Dados de Teste | Resultado Esperado | Status | Tipo |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **CT-PERF-01** | Smoke Test (Verificação Inicial de Saúde) | k6 instalado | 1. Executar `npm run k6:smoke`<br>2. Simular 1 VU durante 10s | 1 VU / 10s | Status code 200 em 100%, taxa de falhas 0% e tempo médio < 500ms. Evidência gerada em `k6/reports/smoke-test-relatorio.html`. | ✅ Aprovado | Performance / Smoke |
+| **CT-PERF-02** | Teste de Carga com Ramp-up (Simulação Realista) | k6 instalado | 1. Executar `npm run k6:run`<br>2. Subir gradualmente até 20 VUs por 40s | 20 VUs / 40s | 95% das requisições respondendo em menos de 1.5s e taxa de falhas inferior a 1%. Evidência gerada em `k6/reports/teste-carga-relatorio.html`. | ⏳ Pronto para execução | Performance / Carga |
+
+---
+
 ## 4. Matriz de Rastreabilidade
 
 | Caso de Teste (ID) | Descrição do Caso de Teste | Origem | Bloco Cypress correspondente |
@@ -177,6 +186,8 @@ Este documento serve como o **guia oficial de execução de testes manuais** e e
 | **CT-EXT-02** | Extrato da conta de destino (crédito recebido) | Manual / Auditoria | Bloco 5 |
 | **CT-SEC-01 a 03** | Proteção de rotas protegidas sem autenticação | Segurança / Regressão | Bloco 6 |
 | **CT-MOB-01** | Responsividade Mobile | Usabilidade / Mobile | Bloco 7 |
+| **CT-PERF-01** | Smoke Test de Performance (1 VU) | Performance | k6: `smoke-test.js` |
+| **CT-PERF-02** | Teste de Carga Real com Ramp-up (20 VUs) | Performance | k6: `teste-carga.js` |
 
 ---
 

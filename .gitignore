@@ -8,6 +8,7 @@ bugbank-ui/
 cypress/reports/
 cypress/screenshots/
 cypress/videos/
+k6/*.html
 
 # Arquivos do sistema operacional e logs
 npm-debug.log*

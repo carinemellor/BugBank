@@ -4,6 +4,20 @@ Este módulo contém a suíte de **Testes de Performance, Carga e Estresse** des
 
 ---
 
+## 📁 Estrutura da Pasta
+
+```text
+k6/
+├── reports/
+│   ├── EVIDENCIA_SMOKE_TEST.md      # Relatório formal com métricas e conclusão de QA
+│   └── smoke-test-relatorio.html    # Dashboard visual interativo em HTML gerado pelo k6
+├── smoke-test.js                    # Script do Smoke Test (1 usuário, 10s)
+├── teste-carga.js                   # Script do Teste de Carga com Ramp-up (até 20 usuários)
+└── README.md                        # Documentação e instruções de execução
+```
+
+---
+
 ## 🎯 Por que o k6?
 * **Linguagem:** Escrito em JavaScript (mesma sintaxe do Cypress).
 * **Leve e Rápido:** Executado em Go puro por baixo dos panos, consumindo pouquíssima memória.
@@ -13,31 +27,22 @@ Este módulo contém a suíte de **Testes de Performance, Carga e Estresse** des
 
 ## 🚀 Como Executar
 
-### 1. Teste de Carga Básico
-Executa o teste configurado com subida gradual de até 20 usuários:
+### 1. Teste Rápido (Smoke Test)
+Executa a validação de integridade com 1 usuário por 10 segundos:
 ```bash
-k6 run k6/teste-carga.js
+npm run k6:smoke
 ```
 
-### 2. Teste Rápido (Smoke Test)
-Executa com apenas 1 usuário por 10 segundos:
+### 2. Teste de Carga Real (Load Test com Ramp-up)
+Executa o teste com subida gradual de até 20 usuários simultâneos por 40 segundos e gera o relatório em HTML:
 ```bash
-k6 run --vus 1 --duration 10s k6/teste-carga.js
-```
-
-### 3. Teste de Estresse (Stress Test)
-Simula 50 usuários simultâneos por 30 segundos:
-```bash
-k6 run --vus 50 --duration 30s k6/teste-carga.js
+npm run k6:run
 ```
 
 ---
 
-## 📊 Principais Métricas Exibidas no Terminal
+## 📊 Relatórios Visuais em HTML
 
-| Métrica | Significado | O que avaliar |
-| :--- | :--- | :--- |
-| `http_req_duration` | Tempo total de resposta da requisição. | Observar a média (`avg`) e o percentil 95 (`p(95)`). Ideal: < 800ms. |
-| `http_req_failed` | Porcentagem de requisições que deram erro (ex: 500, 502, 504). | Deve ser 0.00% ou < 1%. |
-| `http_reqs` | Total de requisições realizadas e vazão (RPS - requisições por segundo). | Quanto maior, mais capacidade o sistema tem. |
-| `vus` / `vus_max` | Usuários virtuais simultâneos ativos no teste. | Capacidade de concorrência testada. |
+Os relatórios gerados automaticamente ficam salvos em:
+* 📄 [`k6/reports/smoke-test-relatorio.html`](./reports/smoke-test-relatorio.html)
+* 📄 [`k6/reports/teste-carga-relatorio.html`](./reports/teste-carga-relatorio.html)
