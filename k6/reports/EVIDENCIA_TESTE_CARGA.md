@@ -49,3 +49,4 @@ Avaliar o comportamento, estabilidade e capacidade de resposta da aplicação Bu
 
 ## 💡 Conclusão da Análise de Performance
 A aplicação demonstrou capacidade exemplar de suporte a múltiplos acessos simultâneos. Mesmo durante o pico com **20 usuários virtuais concorrentes**, a latência média permaneceu em **42ms** e a taxa de erros foi estritamente **0.00%**. A aplicação está **aprovada** nos critérios de carga operacional padrão.
+
