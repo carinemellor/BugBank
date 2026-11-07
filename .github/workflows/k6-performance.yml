@@ -35,3 +35,4 @@ jobs:
           name: k6-performance-reports
           path: k6/reports/
           retention-days: 14
+
